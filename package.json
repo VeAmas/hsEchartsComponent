@@ -1,0 +1,62 @@
+{
+  "name": "DocTest",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build && node build/index.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fais/tzjc-comps": "^3.0.4",
+    "@types/echarts": "^4.9.0",
+    "ambf-common-js": "^1.10.5",
+    "codemirror": "^5.65.3",
+    "core-js": "^3.6.5",
+    "echarts": "^4.9.0",
+    "h_ui": "^1.3.0-patch74",
+    "html-loader": "^1.2.1",
+    "hui-plugin-see": "^1.8.0",
+    "less-loader": "^5.0.0",
+    "lodash": "^4.17.21",
+    "node-less": "^1.0.0",
+    "prettier": "^2.6.2",
+    "raw-loader": "^4.0.2",
+    "showdown": "^2.1.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.3"
+  },
+  "devDependencies": {
+    "@types/codemirror": "^5.60.5",
+    "@types/showdown": "^2.0.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "^4.5.17",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^2.3.1",
+    "style-resources-loader": "^1.5.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
