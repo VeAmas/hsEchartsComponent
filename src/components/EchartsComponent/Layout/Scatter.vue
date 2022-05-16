@@ -75,7 +75,7 @@ export const props = {
   },
 
   showLegend: {
-    default: true
+    default: false
   },
 
   showTooltip: {
