@@ -93,7 +93,7 @@ export default {
           mdList.push(demos[i]);
         });
 
-      this.htmls = mdList;
+      this.htmls = mdList.filter(v => v);
     }
   },
   mounted() {
@@ -105,6 +105,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+/deep/ol {
+  list-style-type: decimal;
+}
+/deep/ul {
+  list-style-type: disc;
+}
+
 .doc {
   padding: 12px;
   padding-bottom: 200px;

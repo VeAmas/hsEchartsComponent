@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const routes = docs.map(
   v =>
     /** @type {import('vue-router').RouteConfig} */ ({
-      path: '/' + v.url,
+      path: v.url,
       name: v.url,
       component: Doc,
       meta: v
