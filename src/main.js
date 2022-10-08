@@ -6,13 +6,16 @@ import 'h_ui/dist/theme/hui-theme-night-black.css';
 import 'h_ui/dist/h_ui.min.css';
 import router from './router';
 import EC from './components/EchartsComponent/register';
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/addon/fold/foldgutter.css'
-import './assets/github-markdown.css'
+import CheckBtn from './components/FaisCheckBtn/CheckBtn.vue';
+import CheckBtnGroup from './components/FaisCheckBtn/CheckBtnGroup.vue';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/addon/fold/foldgutter.css';
+import './assets/github-markdown.css';
 
-window.LOCAL_CONFIG = {
-  isUcf: false
-}
+import '@fais/tzjc-comps/standardCss/index.less';
+
+Vue.component('FaisCheckBtn', CheckBtn);
+Vue.component('FaisCheckBtnGroup', CheckBtnGroup);
 
 Vue.prototype.$store = {
   state: {
@@ -22,7 +25,7 @@ Vue.prototype.$store = {
       }
     }
   }
-}
+};
 Vue.use(hui, {});
 Vue.use(EC);
 Vue.config.productionTip = false;

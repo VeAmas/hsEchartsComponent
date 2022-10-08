@@ -1,0 +1,1 @@
+window.LOCAL_CONFIG = {}

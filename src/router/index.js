@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import docs from '../docs';
 import Doc from '../components/doc.vue';
+import mindmap from '../components/mindmap.vue'
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,12 @@ const routes = docs.map(
       meta: v
     })
 );
+
+routes.push({
+  path: '/mindmap',
+  name: 'mindmap',
+  component: mindmap
+})
 
 const router = new VueRouter({
   routes,

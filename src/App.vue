@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="fais2-compact-wrapper">
     <h-menu
       ref="menu"
       id="menu"
@@ -9,6 +9,7 @@
       <h-menu-item :name="item.url" v-for="(item, index) in menus" :key="index">
         {{ item.name }}
       </h-menu-item>
+      <h-menu-item name="mindmap"> mindmap </h-menu-item>
     </h-menu>
     <div class="content-wrapper">
       <router-view></router-view>

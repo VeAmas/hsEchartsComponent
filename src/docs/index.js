@@ -5,6 +5,7 @@ import layoutLineBar from './layoutLineBar.md';
 import layoutPie from './layoutPie.md';
 import layoutScatter from './layoutScatter.md';
 import layoutTreemap from './layoutTreemap.md';
+import FaisCheckBtn from './FaisCheckBtn.md';
 
 export default [
   {
@@ -41,5 +42,11 @@ export default [
     name: '通用矩形树图布局',
     url: '/layoutTreemap',
     md: layoutTreemap
+  },
+  {
+    name: 'FaisCheckBtn',
+    url: '/FaisCheckBtn',
+    md: FaisCheckBtn
+    
   }
 ];

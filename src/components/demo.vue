@@ -225,6 +225,7 @@ export default {
 .demo-frame {
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 .drag-bar {
   position: absolute;
