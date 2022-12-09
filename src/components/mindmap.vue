@@ -21,6 +21,7 @@
       结果
       <textarea v-model="result" cols="150" rows="40"></textarea>
       <button @click="download">下载</button>
+      <button @click="clear">清空存储</button>
     </div>
   </div>
 </template>
@@ -30,7 +31,9 @@ export default {
   name: 'mindmap',
   data() {
     return {
-      dataKindMap: `
+      dataKindMap:
+        localStorage.getItem('dataKindMap') ||
+        `
       {
       "组合期初权重":"Port Opening Weight",
       "当前维度市值序列":"PortMvHts",
@@ -167,7 +170,9 @@ export default {
       "组合维度当日市值":"RootDimMvHts",
       }
       `,
-      conditionMap: `
+      conditionMap:
+        localStorage.getItem('conditionMap') ||
+        `
       {
         某维度: 'level>1',
         组合: 'level==1',
@@ -218,7 +223,11 @@ export default {
         if (!v) {
           return;
         }
-        const line = v.replace('-', '    ').replace(/#|\t/g, ' ');
+        const dash = v.match(/^[ \t]*-/)?.[0] ?? '';
+        const line = (
+          dash.replace('-', '    ') + v.substring(dash.length)
+        ).replace(/#|\t/g, ' ');
+
         const depth = line.match(/^ *[^ ]/g)[0].length - 2;
         if (depth < 0) {
           return;
@@ -230,17 +239,28 @@ export default {
         }
         const top = stack[stack.length - 1];
 
+        let node;
         if (conditionMap[text]) {
           if (!top.cond) {
             top.cond = {};
           }
-          const node = { children: [] };
+          node = { children: [] };
           top.cond[conditionMap[text]] = node;
           stack.push(node);
         } else {
-          const node = createNode(text);
+          node = createNode(text);
           top.children.push(node);
           stack.push(node);
+        }
+
+        if (
+          [
+            'RiskFreeYieldHts',
+            'BenchElemWeightHtsMnl',
+            'BenchElemYieldHtsMnl'
+          ].includes(node.cons_kind)
+        ) {
+          node.no_target_id = '1';
         }
       });
 
@@ -255,6 +275,10 @@ export default {
       document.body.appendChild(link);
       link.click();
       link.remove();
+    },
+    clear() {
+      localStorage.removeItem('conditionMap');
+      localStorage.removeItem('dataKindMap');
     }
   },
   mounted() {
@@ -262,6 +286,9 @@ export default {
     const input = this.$refs.input;
     input.addEventListener('change', () => {
       console.log(input.files);
+
+      localStorage.setItem('conditionMap', this.conditionMap);
+      localStorage.setItem('dataKindMap', this.dataKindMap);
       const filenames = input.files[0].name.split('.');
       filenames.pop();
       this.filename = filenames.join('.') + '.json';
