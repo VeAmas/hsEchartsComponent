@@ -6,6 +6,7 @@ import layoutPie from './layoutPie.md';
 import layoutScatter from './layoutScatter.md';
 import layoutTreemap from './layoutTreemap.md';
 import FaisCheckBtn from './FaisCheckBtn.md';
+import FaisTransferList from './FaisTransferList.md';
 
 export default [
   {
@@ -47,6 +48,10 @@ export default [
     name: 'FaisCheckBtn',
     url: '/FaisCheckBtn',
     md: FaisCheckBtn
-    
+  },
+  {
+    name: 'FaisTransferList',
+    url: '/FaisTransferList',
+    md: FaisTransferList
   }
 ];

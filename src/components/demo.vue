@@ -215,6 +215,7 @@ export default {
 .demo-wrapper {
   position: relative;
   padding-bottom: 6px;
+  margin-bottom: 32px;
 }
 .demo {
   height: 800px;

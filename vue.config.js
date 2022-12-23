@@ -27,5 +27,12 @@ module.exports = {
         }
       }
     });
+    config.module.rules.push({
+      test: /\.less$/,
+      include: [path.resolve(__dirname, 'node_modules/@fais/tzjc-comps')],
+      use: {
+        loader: 'less-loader'
+      }
+    });
   }
 };

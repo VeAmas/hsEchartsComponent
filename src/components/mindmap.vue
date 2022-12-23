@@ -15,7 +15,7 @@
         cols="50"
         rows="20"
       ></textarea>
-      <input type="file" ref="input" />
+      <input type="file" multiple ref="input" />
     </div>
     <div>
       结果
@@ -223,6 +223,7 @@ export default {
         if (!v) {
           return;
         }
+        v = v.replace(/# +/, '# ');
         const dash = v.match(/^[ \t]*-/)?.[0] ?? '';
         const line = (
           dash.replace('-', '    ') + v.substring(dash.length)
@@ -252,16 +253,6 @@ export default {
           top.children.push(node);
           stack.push(node);
         }
-
-        if (
-          [
-            'RiskFreeYieldHts',
-            'BenchElemWeightHtsMnl',
-            'BenchElemYieldHtsMnl'
-          ].includes(node.cons_kind)
-        ) {
-          node.no_target_id = '1';
-        }
       });
 
       this.result = JSON.stringify(root.children[0], null, 2);
@@ -289,16 +280,31 @@ export default {
 
       localStorage.setItem('conditionMap', this.conditionMap);
       localStorage.setItem('dataKindMap', this.dataKindMap);
-      const filenames = input.files[0].name.split('.');
-      filenames.pop();
-      this.filename = filenames.join('.') + '.json';
-      const fr = new FileReader();
-      fr.readAsText(input.files[0]);
-      fr.onloadend = () => {
-        input.value = '';
 
-        this.run(fr.result);
-      };
+      let p = Promise.resolve();
+      const fileSize = input.files.length;
+
+      [...input.files].forEach(v => {
+        p = p.then(
+          () =>
+            new Promise(rev => {
+              const filenames = v.name.split('.');
+              filenames.pop();
+              this.filename = filenames.join('.') + '.json';
+              const fr = new FileReader();
+              fr.readAsText(v);
+              fr.onloadend = () => {
+                rev();
+                input.value = '';
+
+                this.run(fr.result);
+                if (fileSize > 1) {
+                  this.download();
+                }
+              };
+            })
+        );
+      });
     });
   }
 };
